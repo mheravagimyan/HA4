@@ -30,8 +30,8 @@ describe("Grade", function() {
       await grade.addStudents([student2.address, student3.address]);
       let studentsCountAfter= await grade.getStudentsCount();
 
-      expect(studentsCountBefore).to.eq(1);
-      expect(studentsCountAfter).to.eq(3);
+      expect(studentsCountBefore).to.eq(BigInt("1"));
+      expect(studentsCountAfter).to.eq(BigInt("3"));
 
     });
 
@@ -39,8 +39,8 @@ describe("Grade", function() {
       let studentsCountBefore = await grade.getStudentsCount();
       await grade.removeStudent(student1.address);
       let studentsCountAfter= await grade.getStudentsCount();
-      expect(studentsCountBefore).to.eq(1);
-      expect(studentsCountAfter).to.eq(0);
+      expect(studentsCountBefore).to.eq(BigInt("1"));
+      expect(studentsCountAfter).to.eq(BigInt("0"));
     });
 
     it("Should be possible to compute final grade!", async function () {
@@ -65,7 +65,6 @@ describe("Grade", function() {
     it("Should be emited with correct args!", async function () {
       let tx1 = grade.addStudents([student1.address, student2.address]);
       let tx2 = grade.removeStudent(student1.address);
-
       await expect(tx1)
         .to.emit(grade, "AddStudents")
         .withArgs([student1.address, student2.address]);
